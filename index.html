@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picas y Fijas - Nivel Bucaramanga</title>
+  <link rel="icon" href="imagen2.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>PICAS Y FIJAS</h1>
+    <nav>
+      <a href="#inicio">Jugar</a>
+      <a href="#pdfs">PDFs</a>
+      <a href="#graficas">Gráficas</a>
+    </nav>
+  </header>
+
+  <div class="contenedor" id="inicio">
+    <img src="imagen2.png" alt="Logo" class="logo" />
+    <h2 style="font-size: 36px;">🎯 Picas y Fijas - Nivel Bucaramanga</h2>
+    <p id="poblacion" style="font-size: 36px;"></p>
+    <p style="font-size: 36px;">¿En qué año se alcanzará esa población? (Entre 2010 y 2070)</p>
+    <p style="font-size: 36px;">❤️ Vidas: <span id="vidas">10</span></p>
+    <input type="text" id="inputAño" maxlength="4" placeholder="Año" />
+    
+    <div class="btn-group">
+      <button class="btn-intentar" onclick="verificarIntento()">Intentar</button>
+      <button class="btn-explicacion" onclick="mostrarExplicacion()">¿Cómo se juega?</button>
+      <button class="btn-reiniciar" onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
+
+    <div id="mensaje" style="font-size: 28px; white-space: pre-line;"></div>
+    <div class="historial" id="historial"></div>
+
+    <div class="pdf-container" id="pdfs">
+      <div class="pdf-header" id="pdfHeader">Proyecto ecuaciones diferenciales - Parte 1</div>
+      <iframe id="pdfViewer" src="proyecto ecuaciones corte 1.pdf"></iframe>
+      <div id="pdfExplanation" class="text-explanation">Texto explicativo para el PDF 1.</div>
+    </div>
+    <button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
+
+    <div id="graficas" style="margin-top: 40px;">
+      <iframe src="https://www.geogebra.org/calculator/vfezspxw" 
+              width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>
+      <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>
+      <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Grupo 4 - Ecuaciones Diferenciales
+  </footer>
+
+  <div class="popup" id="popup">
+    <h2>🎮 Cómo se juega:</h2>
+    <p>1. Se te da una población proyectada.<br>
+       2. Debes adivinar el año (entre 2010 y 2070) en que se alcanza esa población.<br>
+       3. Cada intento te dirá cuántos dígitos están correctos y en su lugar (fijas), y cuántos están en el año pero en otra posición (picas).<br>
+       4. Pierdes una vida por intento fallido. Si el formato está mal, puedes perder más.<br>
+       5. Tienes 10 vidas. ¡Buena suerte! 🎉</p>
+    <button onclick="cerrarPopup()">Cerrar</button>
+  </div>
+
+  <div class="survey" id="survey">
+    <h2>Encuesta de conocimiento:</h2>
+    <div id="preguntas"></div>
+    <button onclick="evaluarEncuesta()">Enviar respuestas</button>
+    <button onclick="cerrarEncuesta()">Cerrar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
