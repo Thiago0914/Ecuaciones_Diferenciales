@@ -1,9 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: src('imagen1.PNG');
-  background-size: cover;
-  background-position: center;
   font-family: 'Segoe UI', sans-serif;
   color: white;
   text-align: center;
