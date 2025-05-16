@@ -12,8 +12,8 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-  }
-</style>
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
     <p style="font-size: 36px;">¿En qué año se alcanzará esa población? (Entre 2010 y 2070)</p>
     <p style="font-size: 36px;">❤️ Vidas: <span id="vidas">10</span></p>
     <input type="text" id="inputAño" maxlength="4" placeholder="Año" />
-    
+
     <div class="btn-group">
       <button class="btn-intentar" onclick="verificarIntento()">Intentar</button>
       <button class="btn-explicacion" onclick="mostrarExplicacion()">¿Cómo se juega?</button>
@@ -46,15 +46,20 @@
     <div class="pdf-container" id="pdfs">
       <div class="pdf-header" id="pdfHeader">Proyecto ecuaciones diferenciales - Parte 1</div>
       <iframe id="pdfViewer" src="proyecto ecuaciones corte 1.pdf"></iframe>
-      <div id="pdfExplanation" class="text-explanation">Texto explicativo para el PDF 1.</div>
+      <div id="pdfExplanation" class="text-explanation">.</div>
     </div>
     <button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
 
     <div id="graficas" style="margin-top: 40px;">
-      <iframe src="https://www.geogebra.org/calculator/vfezspxw" 
+      <iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" 
               width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>
       <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('anterior')">⬅️</button>
       <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
+      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('siguiente')">➡️</button>
     </div>
   </div>
 
@@ -80,5 +85,6 @@
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
