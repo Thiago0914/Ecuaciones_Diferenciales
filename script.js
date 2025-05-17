@@ -43,31 +43,20 @@ function contarFijasPicas(secreto, intento) {
   return [fijas, picas];
 }
 
-function togglePDF() {
+let currentPDF = 1;
+
+function cambiarPDF(direccion) {
   const pdfViewer = document.getElementById("pdfViewer");
   const pdfHeader = document.getElementById("pdfHeader");
   const pdfExplanation = document.getElementById("pdfExplanation");
 
+  if (direccion === 'siguiente') {
+    currentPDF = currentPDF === 3 ? 1 : currentPDF + 1;
+  } else if (direccion === 'anterior') {
+    currentPDF = currentPDF === 1 ? 3 : currentPDF - 1;
+  }
+
   if (currentPDF === 1) {
-    currentPDF = 2;
-    pdfViewer.src = "ProyectoED_corte2of.pdf";
-    pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 2";
-    pdfExplanation.innerHTML = `
-      <h2>📗 Proyecto de Ecuaciones Diferenciales - Corte 2</h2>
-      <p><strong>Tema:</strong> Modelamiento poblacional con ecuación logística 🧬</p>
-      <p><strong>Objetivo:</strong> Usar un modelo más realista que el exponencial. Se aplica la ecuación logística:<br>
-      <code>P(t) = K / (A * e<sup>-rt</sup> + 1)</code> para considerar límites naturales.</p>
-      <p><strong>¿Qué se hizo?</strong></p>
-      <ul>
-        <li>Se usaron dos pares de datos: [1984-2004] y [2010-2020]</li>
-        <li>Se resolvió la ecuación logística hallando <code>r</code> y <code>A</code> con <code>K = 2,000,000</code></li>
-        <li>Se proyectó población al 2025 y se compararon errores</li>
-        <li>Error en modelo 1: 10.21% - Modelo 2: 4.24%</li>
-      </ul>
-      <p>🎮 Se agregó un juego interactivo para reforzar la comprensión llamado <em>“Adivina el Año”</em>.</p>
-    `;
-  } else {
-    currentPDF = 1;
     pdfViewer.src = "proyecto ecuaciones corte 1.pdf";
     pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 1";
     pdfExplanation.innerHTML = `
@@ -84,8 +73,59 @@ function togglePDF() {
       </ul>
       <p>🔍 Se concluye que el modelo exponencial sobreestima a largo plazo. En el segundo corte se mejora con un modelo logístico.</p>
     `;
+  } else if (currentPDF === 2) {
+    pdfViewer.src = "ProyectoED_corte2of.pdf";
+    pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 2";
+    pdfExplanation.innerHTML = `
+      <h2>📗 Proyecto de Ecuaciones Diferenciales - Corte 2</h2>
+      <p><strong>Tema:</strong> Modelamiento poblacional con ecuación logística 🧬</p>
+      <p><strong>Objetivo:</strong> Usar un modelo más realista que el exponencial. Se aplica la ecuación logística:<br>
+      <code>P(t) = K / (A * e<sup>-rt</sup> + 1)</code> para considerar límites naturales.</p>
+      <p><strong>¿Qué se hizo?</strong></p>
+      <ul>
+        <li>Se usaron dos pares de datos: [1984-2004] y [2010-2020]</li>
+        <li>Se resolvió la ecuación logística hallando <code>r</code> y <code>A</code> con <code>K = 2,000,000</code></li>
+        <li>Se proyectó población al 2025 y se compararon errores</li>
+        <li>Error en modelo 1: 10.21% - Modelo 2: 4.24%</li>
+      </ul>
+      <p>🎮 Se agregó un juego interactivo para reforzar la comprensión llamado <em>“Adivina el Año”</em>.</p>
+    `;
+  } else if (currentPDF === 3) {
+    pdfViewer.src = "Proyecto_ED_corte_3.pdf";
+    pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 3";
+    pdfExplanation.innerHTML = `
+      <h2>📕 Proyecto de Ecuaciones Diferenciales - Corte 3</h2>
+      <p><strong>Tema:</strong> Comparación de modelos poblacionales usando la Transformada de Laplace 📉📈</p>
+      <p><strong>Objetivo:</strong> Resolver ecuaciones diferenciales poblacionales con Laplace y validar modelos exponenciales y logísticos.</p>
+      <p><strong>¿Qué se hizo?</strong></p>
+      <ul>
+        <li>Aplicación de la Transformada de Laplace a ecuaciones poblacionales</li>
+        <li>Derivación e inversa para dos condiciones iniciales distintas (PVIs)</li>
+        <li>Simulación y comparación en MATLAB entre modelos exponenciales y logísticos</li>
+      </ul>
+      <p><strong>Resultados:</strong></p>
+      <ul>
+        <li>El modelo exponencial predice crecimiento ilimitado</li>
+        <li>El modelo logístico considera una capacidad de carga K = 2,000,000</li>
+        <li>Las gráficas muestran cómo el modelo logístico se aplana y refleja la realidad</li>
+      </ul>
+      <p>🧩 Además, se reforzó el proyecto con:</p>
+      <ul>
+        <li>Gráficas interactivas manipulables vía GeoGebra</li>
+        <li>Juego educativo “Picas y Fijas - Nivel Bucaramanga”</li>
+        <li>Encuestas tipo test para autoevaluación lúdica</li>
+      </ul>
+      <p>🌐 Ver más en: <a href="https://thiago0914.github.io/Ecuaciones_Diferenciales/" target="_blank">Página del proyecto</a></p>
+    `;
   }
 }
+
+// Inicializa todo desde el corte 1
+window.onload = () => {
+  reiniciarJuego();
+  cambiarPDF('anterior'); // Para ir al corte 3 temporalmente
+  cambiarPDF('siguiente'); // Para quedar en el corte 1 cargado correctamente
+};
 
 window.onload = () => {
   reiniciarJuego();     // 👉 Inicializa el juego y muestra la población
