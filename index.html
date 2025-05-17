@@ -48,7 +48,10 @@
       <iframe id="pdfViewer" src="proyecto ecuaciones corte 1.pdf"></iframe>
       <div id="pdfExplanation" class="text-explanation">.</div>
     </div>
-    <button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
+    <div class="btn-group">
+      <button class="btn-pdf" onclick="cambiarPDF('anterior')">⬅️</button>
+      <button class="btn-pdf" onclick="cambiarPDF('siguiente')">➡️</button>
+    </div>
 
     <div id="graficas" style="margin-top: 40px;">
       <iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" 
