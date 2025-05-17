@@ -136,7 +136,7 @@ window.onload = () => {
 let graficaActual = 0;
 const graficas = [
   '<iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>',
-  '<img src="nueva_imagen.png" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
+  '<img src="nueva_imagen.jpeg" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
 ];
 
 function cambiarGrafica(direccion) {
