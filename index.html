@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -35,36 +34,33 @@
     <p style="font-size: 36px;">❤️ Vidas: <span id="vidas">10</span></p>
     <input type="text" id="inputAño" maxlength="4" placeholder="Año" />
 
-```
-<div class="btn-group">
-  <button class="btn-intentar" onclick="verificarIntento()">Intentar</button>
-  <button class="btn-explicacion" onclick="mostrarExplicacion()">¿Cómo se juega?</button>
-  <button class="btn-reiniciar" onclick="reiniciarJuego()">Reiniciar</button>
-</div>
+    <div class="btn-group">
+      <button class="btn-intentar" onclick="verificarIntento()">Intentar</button>
+      <button class="btn-explicacion" onclick="mostrarExplicacion()">¿Cómo se juega?</button>
+      <button class="btn-reiniciar" onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
 
-<div id="mensaje" style="font-size: 28px; white-space: pre-line;"></div>
-<div class="historial" id="historial"></div>
+    <div id="mensaje" style="font-size: 28px; white-space: pre-line;"></div>
+    <div class="historial" id="historial"></div>
 
-<div class="pdf-container" id="pdfs">
-  <div class="pdf-header" id="pdfHeader">Proyecto ecuaciones diferenciales - Parte 1</div>
-  <iframe id="pdfViewer" src="proyecto ecuaciones corte 1.pdf"></iframe>
-  <div id="pdfExplanation" class="text-explanation">.</div>
-</div>
-<button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
+    <div class="pdf-container" id="pdfs">
+      <div class="pdf-header" id="pdfHeader">Proyecto ecuaciones diferenciales - Parte 1</div>
+      <iframe id="pdfViewer" src="proyecto ecuaciones corte 1.pdf"></iframe>
+      <div id="pdfExplanation" class="text-explanation">.</div>
+    </div>
+    <button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
 
-<div id="graficas" style="margin-top: 40px;">
-  <iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" 
-          width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>
-  <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>
-</div>
+    <div id="graficas" style="margin-top: 40px;">
+      <iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" 
+              width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>
+      <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>
+    </div>
 
-<div class="btn-group">
-  <button class="btn-cambiar-grafica" onclick="cambiarGrafica('anterior')">⬅️</button>
-  <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
-  <button class="btn-cambiar-grafica" onclick="cambiarGrafica('siguiente')">➡️</button>
-</div>
-```
-
+    <div class="btn-group">
+      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('anterior')">⬅️</button>
+      <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
+      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('siguiente')">➡️</button>
+    </div>
   </div>
 
   <footer>
