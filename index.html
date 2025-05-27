@@ -49,18 +49,26 @@
       <div id="pdfExplanation" class="text-explanation">.</div>
     </div>
     <button class="btn-pdf" onclick="togglePDF()">Cambiar PDF</button>
-
-    <div id="graficas" style="margin: 40px auto; width: fit-content;">
-      <iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" 
-              width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>
-      <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>
+    <div id="graficas" style="margin-top: 40px;">
+  <div class="grafica-container">
+    <h3>Título 1</h3>
+    <iframe src="https://www.geogebra.org/calculator/vfezspxw" 
+            width="800" height="600" 
+            style="border: 1px solid #e4e4e4;border-radius: 4px; display: block; margin: 0 auto;" 
+            frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+    <div class="grafica-container" style="margin-top: 40px;">
+      <h3>Título 2</h3>
+      <img src="imagen2.png" alt="Gráfica local" 
+           style="display: block; width: 800px; height: 600px; object-fit: contain; margin: 0 auto; border: 2px solid #fff; border-radius: 8px;">
     </div>
 
-    <div class="btn-group">
-      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('anterior')">⬅️</button>
-      <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
-      <button class="btn-cambiar-grafica" onclick="cambiarGrafica('siguiente')">➡️</button>
-    </div>
+    <div class="manipulable-text">🔧 Estos apartados son manipulables</div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn-intentar" onclick="mostrarEncuesta()">Prueba tu intelecto</button>
   </div>
 
   <footer>
