@@ -86,25 +86,44 @@ const graficas = [
     style="display:block;width:800px;height:600px;object-fit:contain;margin:0 auto;border:2px solid #fff;border-radius:8px;">`
 ];
 function cambiarGrafica(direccion) {
-  if (direccion === 'anterior') {
-    graficaActual = (graficaActual - 1 + graficas.length) % graficas.length;
+  // Lógica para cambiar graficaActual...
+  
+  const container = document.getElementById("graficas");
+  container.innerHTML = '';
+  
+  const wrapper = document.createElement('div');
+  wrapper.style.width = '800px';
+  wrapper.style.height = '600px';
+  wrapper.style.margin = '0 auto';
+  
+  if(graficaActual === 0) {
+    const iframe = document.createElement('iframe');
+    iframe.src = "https://www.geogebra.org/calculator/vfezspxw";
+    iframe.width = "800";
+    iframe.height = "600";
+    iframe.style.border = "1px solid #e4e4e4";
+    iframe.style.borderRadius = "4px";
+    iframe.frameborder = "0";
+    wrapper.appendChild(iframe);
   } else {
-    graficaActual = (graficaActual + 1) % graficas.length;
+    const img = document.createElement('img');
+    img.src = "imagen2.png";
+    img.alt = "Gráfica local";
+    img.style.width = "800px";
+    img.style.height = "600px";
+    img.style.objectFit = "contain";
+    img.style.display = "block";
+    img.style.margin = "0 auto";
+    wrapper.appendChild(img);
   }
   
-  const graficasContainer = document.getElementById("graficas");
-  graficasContainer.innerHTML = `
-    <div style="width: 800px; height: 600px; margin: 0 auto;">
-      ${graficas[graficaActual]}
-    </div>
-    <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverlo a tu gusto.</div>
-  `;
+  container.appendChild(wrapper);
   
-  // Debugging
-  console.log("Gráfica actual:", graficaActual);
-  console.log("Contenido HTML:", graficas[graficaActual]);
+  const text = document.createElement('div');
+  text.className = "manipulable-text";
+  text.textContent = "🔧 Este apartado es manipulable, puedes moverlo a tu gusto.";
+  container.appendChild(text);
 }
-
 function mostrarExplicacion() {
   document.getElementById("popup").style.display = "block";
 }
