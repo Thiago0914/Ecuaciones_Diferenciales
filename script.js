@@ -57,7 +57,7 @@ function togglePDF() {
     pdfExplanation.innerHTML = `       <h2>📗 Proyecto de Ecuaciones Diferenciales - Corte 2</h2>       <p><strong>Tema:</strong> Modelamiento poblacional con ecuación logística 🧬</p>       <p><strong>Objetivo:</strong> Usar un modelo más realista que el exponencial. Se aplica la ecuación logística:<br>       <code>P(t) = K / (A * e<sup>-rt</sup> + 1)</code> para considerar límites naturales.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Se usaron dos pares de datos: [1984-2004] y [2010-2020]</li>         <li>Se resolvió la ecuación logística hallando <code>r</code> y <code>A</code> con <code>K = 2,000,000</code></li>         <li>Se proyectó población al 2025 y se compararon errores</li>         <li>Error en modelo 1: 10.21% - Modelo 2: 4.24%</li>       </ul>       <p>🎮 Se agregó un juego interactivo para reforzar la comprensión llamado <em>“Adivina el Año”</em>.</p>`;
   } else if (currentPDF === 2) {
     currentPDF = 3;
-    pdfViewer.src = "proyecto ecuaciones corte 3.pdf"; // Aquí va el PDF
+    pdfViewer.src = "Proyecto_ED_corte_3.pdf"; // Aquí va el PDF
     pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 3";
     pdfExplanation.innerHTML = `       <h2>📙 Proyecto de Ecuaciones Diferenciales - Corte 3</h2>       <p><strong>Tema:</strong> Análisis comparativo de modelos poblacionales 📊</p>       <p><strong>Objetivo:</strong> Comparar los modelos exponencial y logístico aplicados a Bucaramanga.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Comparación detallada de ambos modelos</li>         <li>Análisis de errores y precisión</li>         <li>Conclusiones sobre la aplicabilidad de cada modelo</li>         <li>Recomendaciones para futuras proyecciones</li>       </ul>       <p>🔍 Se demostró que el modelo logístico es más preciso para proyecciones a largo plazo.</p>`;
   } else {
@@ -76,7 +76,7 @@ window.onload = function() {
 let graficaActual = 0;
 const graficas = [
   '<iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>',
-  '<img src="nueva_imagen.png" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
+  '<img src="imagen3.jpeg" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
 ];
 
 function cambiarGrafica(direccion) {
