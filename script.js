@@ -75,19 +75,34 @@ window.onload = function() {
 
 let graficaActual = 0;
 const graficas = [
-  '<iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>',
-  '<img src="imagen2.png" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
+  // Gráfica 0 - GeoGebra
+  `<iframe src="https://www.geogebra.org/calculator/vfezspxw" 
+    width="800" height="600" 
+    style="border:1px solid #e4e4e4;border-radius:4px;display:block;margin:0 auto;"
+    frameborder="0" allowfullscreen></iframe>`,
+  
+  // Gráfica 1 - Tu imagen local
+  `<img src="imagen2.png" alt="Gráfica local" 
+    style="display:block;width:800px;height:600px;object-fit:contain;margin:0 auto;border:2px solid #fff;border-radius:8px;">`
 ];
-
 function cambiarGrafica(direccion) {
   if (direccion === 'anterior') {
     graficaActual = (graficaActual - 1 + graficas.length) % graficas.length;
-  } else if (direccion === 'siguiente') {
+  } else {
     graficaActual = (graficaActual + 1) % graficas.length;
   }
-  const geogebraContainer = document.getElementById("graficas");
-  geogebraContainer.innerHTML = graficas[graficaActual] +
-    '<div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>';
+  
+  const graficasContainer = document.getElementById("graficas");
+  graficasContainer.innerHTML = `
+    <div style="width: 800px; height: 600px; margin: 0 auto;">
+      ${graficas[graficaActual]}
+    </div>
+    <div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverlo a tu gusto.</div>
+  `;
+  
+  // Debugging
+  console.log("Gráfica actual:", graficaActual);
+  console.log("Contenido HTML:", graficas[graficaActual]);
 }
 
 function mostrarExplicacion() {
