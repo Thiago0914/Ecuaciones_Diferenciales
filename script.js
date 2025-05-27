@@ -73,6 +73,23 @@ window.onload = function() {
   togglePDF(); // Inicializa el primer PDF
 };
 
+let graficaActual = 0;
+const graficas = [
+  '<iframe id="geogebra" src="https://www.geogebra.org/calculator/vfezspxw" width="800" height="600" style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0" allowfullscreen></iframe>',
+  '<img src="nueva_imagen.png" alt="Nueva Gráfica" style="width: 100%; height: auto; border-radius: 8px;"/>'
+];
+
+function cambiarGrafica(direccion) {
+  if (direccion === 'anterior') {
+    graficaActual = (graficaActual - 1 + graficas.length) % graficas.length;
+  } else if (direccion === 'siguiente') {
+    graficaActual = (graficaActual + 1) % graficas.length;
+  }
+  const geogebraContainer = document.getElementById("graficas");
+  geogebraContainer.innerHTML = graficas[graficaActual] +
+    '<div class="manipulable-text">🔧 Este apartado es manipulable, puedes moverla a tu gusto.</div>';
+}
+
 function mostrarExplicacion() {
   document.getElementById("popup").style.display = "block";
 }
