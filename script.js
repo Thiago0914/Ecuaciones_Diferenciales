@@ -73,57 +73,6 @@ window.onload = function() {
   togglePDF(); // Inicializa el primer PDF
 };
 
-let graficaActual = 0;
-const graficas = [
-  // Gráfica 0 - GeoGebra
-  `<iframe src="https://www.geogebra.org/calculator/vfezspxw" 
-    width="800" height="600" 
-    style="border:1px solid #e4e4e4;border-radius:4px;display:block;margin:0 auto;"
-    frameborder="0" allowfullscreen></iframe>`,
-  
-  // Gráfica 1 - Tu imagen local
-  `<img src="imagen2.png" alt="Gráfica local" 
-    style="display:block;width:800px;height:600px;object-fit:contain;margin:0 auto;border:2px solid #fff;border-radius:8px;">`
-];
-function cambiarGrafica(direccion) {
-  // Lógica para cambiar graficaActual...
-  
-  const container = document.getElementById("graficas");
-  container.innerHTML = '';
-  
-  const wrapper = document.createElement('div');
-  wrapper.style.width = '800px';
-  wrapper.style.height = '600px';
-  wrapper.style.margin = '0 auto';
-  
-  if(graficaActual === 0) {
-    const iframe = document.createElement('iframe');
-    iframe.src = "https://www.geogebra.org/calculator/vfezspxw";
-    iframe.width = "800";
-    iframe.height = "600";
-    iframe.style.border = "1px solid #e4e4e4";
-    iframe.style.borderRadius = "4px";
-    iframe.frameborder = "0";
-    wrapper.appendChild(iframe);
-  } else {
-    const img = document.createElement('img');
-    img.src = "imagen2.png";
-    img.alt = "Gráfica local";
-    img.style.width = "800px";
-    img.style.height = "600px";
-    img.style.objectFit = "contain";
-    img.style.display = "block";
-    img.style.margin = "0 auto";
-    wrapper.appendChild(img);
-  }
-  
-  container.appendChild(wrapper);
-  
-  const text = document.createElement('div');
-  text.className = "manipulable-text";
-  text.textContent = "🔧 Este apartado es manipulable, puedes moverlo a tu gusto.";
-  container.appendChild(text);
-}
 function mostrarExplicacion() {
   document.getElementById("popup").style.display = "block";
 }
