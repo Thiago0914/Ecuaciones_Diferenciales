@@ -43,8 +43,6 @@ function contarFijasPicas(secreto, intento) {
   return [fijas, picas];
 }
 
-let currentPDF = 1;
-
 function cambiarPDF(direccion) {
   const pdfViewer = document.getElementById("pdfViewer");
   const pdfHeader = document.getElementById("pdfHeader");
@@ -120,6 +118,13 @@ function cambiarPDF(direccion) {
   }
 }
 
+// Inicializa todo desde el corte 1
+window.onload = () => {
+  reiniciarJuego(); // Inicializa el juego y muestra la población
+  cambiarPDF('siguiente'); // Carga el primer PDF correctamente
+};
+
+</body>
 // Inicializa todo desde el corte 1
 window.onload = () => {
   reiniciarJuego();
