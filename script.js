@@ -8,9 +8,7 @@ const preguntas = [
   "La gráfica logística nunca cambia su pendiente en el tiempo.",
   "Visualmente, la curva logística se aplana al acercarse a la capacidad de carga."
 ];
-// Respuestas correctas predefinidas (true = Verdadero, false = Falso)
-const respuestasCorrectas = [true, true, true, true, false, true];
-let respuestas = []; // Array para almacenar cuál opción es la correcta (1 o 0)
+let respuestas = [];
 
 function poblacion(t) {
   return 2000000 / (3.0444 * Math.exp(-0.059 * t) + 1);
@@ -59,7 +57,7 @@ function togglePDF() {
     pdfExplanation.innerHTML = `       <h2>📗 Proyecto de Ecuaciones Diferenciales - Corte 2</h2>       <p><strong>Tema:</strong> Modelamiento poblacional con ecuación logística 🧬</p>       <p><strong>Objetivo:</strong> Usar un modelo más realista que el exponencial. Se aplica la ecuación logística:<br>       <code>P(t) = K / (A * e<sup>-rt</sup> + 1)</code> para considerar límites naturales.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Se usaron dos pares de datos: [1984-2004] y [2010-2020]</li>         <li>Se resolvió la ecuación logística hallando <code>r</code> y <code>A</code> con <code>K = 2,000,000</code></li>         <li>Se proyectó población al 2025 y se compararon errores</li>         <li>Error en modelo 1: 10.21% - Modelo 2: 4.24%</li>       </ul>       <p>🎮 Se agregó un juego interactivo para reforzar la comprensión llamado <em>“Adivina el Año”</em>.</p>`;
   } else if (currentPDF === 2) {
     currentPDF = 3;
-    pdfViewer.src = "Proyecto_ED_corte_3.pdf";
+    pdfViewer.src = "Proyecto_ED_corte_3.pdf"; // Aquí va el PDF
     pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 3";
     pdfExplanation.innerHTML = `       <h2>📙 Proyecto de Ecuaciones Diferenciales - Corte 3</h2>       <p><strong>Tema:</strong> Análisis comparativo de modelos poblacionales 📊</p>       <p><strong>Objetivo:</strong> Comparar los modelos exponencial y logístico aplicados a Bucaramanga.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Comparación detallada de ambos modelos</li>         <li>Análisis de errores y precisión</li>         <li>Conclusiones sobre la aplicabilidad de cada modelo</li>         <li>Recomendaciones para futuras proyecciones</li>       </ul>       <p>🔍 Se demostró que el modelo logístico es más preciso para proyecciones a largo plazo.</p>`;
   } else {
@@ -72,7 +70,7 @@ function togglePDF() {
 
 window.onload = function() {
   reiniciarJuego();
-  togglePDF();
+  togglePDF(); // Inicializa el primer PDF
 };
 
 let graficaActual = 0;
@@ -185,24 +183,32 @@ function verificarIntento() {
 function mostrarEncuesta() {
   const preguntasDiv = document.getElementById("preguntas");
   preguntasDiv.innerHTML = "";
-  respuestas = []; // Reiniciamos el array de respuestas correctas
   
+  // Respuestas correctas para cada pregunta
+  const respuestasCorrectas = [
+    "👉 Verdadero ✅",
+    "👉 Falso ❌",
+    "👉 Verdadero ✅",
+    "👉 Verdadero ✅",
+    "👉 Falso ❌",
+    "👉 Verdadero ✅"
+  ];
+
   preguntas.forEach((pregunta, index) => {
-    // Generamos un orden aleatorio para las respuestas
-    const esVerdaderoPrimero = Math.random() < 0.5;
+    const respuestaCorrecta = respuestasCorrectas[index];
+    const respuestaIncorrecta = respuestaCorrecta.includes("✅") ? "👉 Falso ❌" : "👉 Verdadero ✅";
     
-    // Asignamos la posición correcta basada en respuestasCorrectas
-    respuestas[index] = (respuestasCorrectas[index] === esVerdaderoPrimero) ? 1 : 0;
-    
-    const opcionVerdadero = esVerdaderoPrimero ? "👉 Verdadero ✅" : "👉 Falso ❌";
-    const opcionFalso = esVerdaderoPrimero ? "👉 Falso ❌" : "👉 Verdadero ✅";
+    // Crear un array de respuestas y mezclarlo
+    const respuestas = [respuestaCorrecta, respuestaIncorrecta];
+    respuestas.sort(() => Math.random() - 0.5); // Mezclar respuestas
 
     const preguntaDiv = document.createElement("div");
     preguntaDiv.innerHTML = `<p>${pregunta}</p>
-      <input type="radio" name="respuesta${index}" value="1"> ${opcionVerdadero}<br>
-      <input type="radio" name="respuesta${index}" value="0"> ${opcionFalso}<br>`;
+      <input type="radio" name="respuesta${index}" value="1"> ${respuestas[0]}<br>
+      <input type="radio" name="respuesta${index}" value="0"> ${respuestas[1]}<br>`;
     preguntasDiv.appendChild(preguntaDiv);
   });
+  
   document.getElementById("survey").style.display = "block";
 }
 
@@ -212,7 +218,7 @@ function evaluarEncuesta() {
 
   for (let i = 0; i < totalPreguntas; i++) {
     const respuesta = document.querySelector(`input[name="respuesta${i}"]:checked`);
-    if (respuesta && parseInt(respuesta.value) === respuestas[i]) {
+    if (respuesta && respuesta.value === "1") {
       respuestasCorrectas++;
     }
   }
