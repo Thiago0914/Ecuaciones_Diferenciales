@@ -8,7 +8,10 @@ const preguntas = [
   "La gráfica logística nunca cambia su pendiente en el tiempo.",
   "Visualmente, la curva logística se aplana al acercarse a la capacidad de carga."
 ];
-let respuestas = [True, False, True, True, False, True]; 
+// Respuestas correctas predefinidas (true = Verdadero, false = Falso)
+const respuestasCorrectas = [true, true, true, true, false, true];
+let respuestas = []; // Array para almacenar cuál opción es la correcta (1 o 0)
+
 function poblacion(t) {
   return 2000000 / (3.0444 * Math.exp(-0.059 * t) + 1);
 }
@@ -187,16 +190,17 @@ function mostrarEncuesta() {
   preguntas.forEach((pregunta, index) => {
     // Generamos un orden aleatorio para las respuestas
     const esVerdaderoPrimero = Math.random() < 0.5;
-    const respuestaCorrecta = esVerdaderoPrimero ? "👉 Verdadero ✅" : "👉 Falso ❌";
-    const respuestaIncorrecta = esVerdaderoPrimero ? "👉 Falso ❌" : "👉 Verdadero ✅";
     
-    // Guardamos cuál es la respuesta correcta (1 para primera opción, 0 para segunda)
-    respuestas[index] = esVerdaderoPrimero ? 1 : 0;
+    // Asignamos la posición correcta basada en respuestasCorrectas
+    respuestas[index] = (respuestasCorrectas[index] === esVerdaderoPrimero) ? 1 : 0;
     
+    const opcionVerdadero = esVerdaderoPrimero ? "👉 Verdadero ✅" : "👉 Falso ❌";
+    const opcionFalso = esVerdaderoPrimero ? "👉 Falso ❌" : "👉 Verdadero ✅";
+
     const preguntaDiv = document.createElement("div");
     preguntaDiv.innerHTML = `<p>${pregunta}</p>
-      <input type="radio" name="respuesta${index}" value="1"> ${respuestaCorrecta}<br>
-      <input type="radio" name="respuesta${index}" value="0"> ${respuestaIncorrecta}<br>`;
+      <input type="radio" name="respuesta${index}" value="1"> ${opcionVerdadero}<br>
+      <input type="radio" name="respuesta${index}" value="0"> ${opcionFalso}<br>`;
     preguntasDiv.appendChild(preguntaDiv);
   });
   document.getElementById("survey").style.display = "block";
