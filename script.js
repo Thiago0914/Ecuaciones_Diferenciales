@@ -8,8 +8,7 @@ const preguntas = [
   "La gráfica logística nunca cambia su pendiente en el tiempo.",
   "Visualmente, la curva logística se aplana al acercarse a la capacidad de carga."
 ];
-let respuestas = [];
-
+let respuestas = [True, False, True, True, False, True]; 
 function poblacion(t) {
   return 2000000 / (3.0444 * Math.exp(-0.059 * t) + 1);
 }
@@ -57,7 +56,7 @@ function togglePDF() {
     pdfExplanation.innerHTML = `       <h2>📗 Proyecto de Ecuaciones Diferenciales - Corte 2</h2>       <p><strong>Tema:</strong> Modelamiento poblacional con ecuación logística 🧬</p>       <p><strong>Objetivo:</strong> Usar un modelo más realista que el exponencial. Se aplica la ecuación logística:<br>       <code>P(t) = K / (A * e<sup>-rt</sup> + 1)</code> para considerar límites naturales.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Se usaron dos pares de datos: [1984-2004] y [2010-2020]</li>         <li>Se resolvió la ecuación logística hallando <code>r</code> y <code>A</code> con <code>K = 2,000,000</code></li>         <li>Se proyectó población al 2025 y se compararon errores</li>         <li>Error en modelo 1: 10.21% - Modelo 2: 4.24%</li>       </ul>       <p>🎮 Se agregó un juego interactivo para reforzar la comprensión llamado <em>“Adivina el Año”</em>.</p>`;
   } else if (currentPDF === 2) {
     currentPDF = 3;
-    pdfViewer.src = "Proyecto_ED_corte_3.pdf"; // Aquí va el PDF
+    pdfViewer.src = "Proyecto_ED_corte_3.pdf";
     pdfHeader.textContent = "Proyecto ecuaciones diferenciales - Parte 3";
     pdfExplanation.innerHTML = `       <h2>📙 Proyecto de Ecuaciones Diferenciales - Corte 3</h2>       <p><strong>Tema:</strong> Análisis comparativo de modelos poblacionales 📊</p>       <p><strong>Objetivo:</strong> Comparar los modelos exponencial y logístico aplicados a Bucaramanga.</p>       <p><strong>¿Qué se hizo?</strong></p>       <ul>         <li>Comparación detallada de ambos modelos</li>         <li>Análisis de errores y precisión</li>         <li>Conclusiones sobre la aplicabilidad de cada modelo</li>         <li>Recomendaciones para futuras proyecciones</li>       </ul>       <p>🔍 Se demostró que el modelo logístico es más preciso para proyecciones a largo plazo.</p>`;
   } else {
@@ -70,7 +69,7 @@ function togglePDF() {
 
 window.onload = function() {
   reiniciarJuego();
-  togglePDF(); // Inicializa el primer PDF
+  togglePDF();
 };
 
 let graficaActual = 0;
@@ -183,9 +182,17 @@ function verificarIntento() {
 function mostrarEncuesta() {
   const preguntasDiv = document.getElementById("preguntas");
   preguntasDiv.innerHTML = "";
+  respuestas = []; // Reiniciamos el array de respuestas correctas
+  
   preguntas.forEach((pregunta, index) => {
-    const respuestaCorrecta = Math.random() < 0.5 ? "👉 Verdadero ✅" : "👉 Falso ❌";
-    const respuestaIncorrecta = respuestaCorrecta === "👉 Verdadero ✅" ? "👉 Falso ❌" : "👉 Verdadero ✅";
+    // Generamos un orden aleatorio para las respuestas
+    const esVerdaderoPrimero = Math.random() < 0.5;
+    const respuestaCorrecta = esVerdaderoPrimero ? "👉 Verdadero ✅" : "👉 Falso ❌";
+    const respuestaIncorrecta = esVerdaderoPrimero ? "👉 Falso ❌" : "👉 Verdadero ✅";
+    
+    // Guardamos cuál es la respuesta correcta (1 para primera opción, 0 para segunda)
+    respuestas[index] = esVerdaderoPrimero ? 1 : 0;
+    
     const preguntaDiv = document.createElement("div");
     preguntaDiv.innerHTML = `<p>${pregunta}</p>
       <input type="radio" name="respuesta${index}" value="1"> ${respuestaCorrecta}<br>
@@ -201,7 +208,7 @@ function evaluarEncuesta() {
 
   for (let i = 0; i < totalPreguntas; i++) {
     const respuesta = document.querySelector(`input[name="respuesta${i}"]:checked`);
-    if (respuesta && respuesta.value === "1") {
+    if (respuesta && parseInt(respuesta.value) === respuestas[i]) {
       respuestasCorrectas++;
     }
   }
